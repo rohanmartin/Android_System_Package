@@ -38,7 +38,7 @@
 #include "ant_native_chardev.h"
 #include "ant_rx_chardev.h"
 
-#define CHIP-B_CHAR_DEV_IOCTL_RESET          _IO('H', 160)
+#define CHIP_B_CHAR_DEV_IOCTL_RESET          _IO('H', 160)
 
 #define MESG_BROADCAST_DATA_ID               ((ANT_U8)0x4E)
 #define MESG_ACKNOWLEDGED_DATA_ID            ((ANT_U8)0x4F)
@@ -118,10 +118,10 @@ ANTStatus ant_tx_message(ANT_U8 ucLen, ANT_U8 *pucMesg)
       uiRet = ANT_STATUS_FAILED_BT_NOT_INITIALIZED;
       goto out;
    }
-   txBuffer[CHIP-B_HCI_SIZE_OFFSET] = ucLen;
-   memcpy(txBuffer + CHIP-B_HCI_HEADER_SIZE, pucMesg, ucLen);
-   ANT_SERIAL(txBuffer, ucLen + CHIP-B_HCI_HEADER_SIZE, 'T');
-   switch (txBuffer[CHIP-B_HCI_DATA_OFFSET + ANT_MSG_ID_OFFSET]) {
+   txBuffer[CHIP_B_HCI_SIZE_OFFSET] = ucLen;
+   memcpy(txBuffer + CHIP_B_HCI_HEADER_SIZE, pucMesg, ucLen);
+   ANT_SERIAL(txBuffer, ucLen + CHIP_B_HCI_HEADER_SIZE, 'T');
+   switch (txBuffer[CHIP_B_HCI_DATA_OFFSET + ANT_MSG_ID_OFFSET]) {
    case MESG_BROADCAST_DATA_ID:
    case MESG_ACKNOWLEDGED_DATA_ID:
    case MESG_BURST_DATA_ID:
@@ -137,13 +137,13 @@ ANTStatus ant_tx_message(ANT_U8 ucLen, ANT_U8 *pucMesg)
       ANT_DEBUG_V("got stFlowControlLock in %s", __FUNCTION__);
 
       stRxThreadInfo.astChannels[COMMAND_CHANNEL].ucFlowControlResp = FLOW_STOP;
-      iResult = write(stRxThreadInfo.astChannels[DATA_CHANNEL].iFd, txBuffer, ucLen + CHIP-B_HCI_HEADER_SIZE);
+      iResult = write(stRxThreadInfo.astChannels[DATA_CHANNEL].iFd, txBuffer, ucLen + CHIP_B_HCI_HEADER_SIZE);
       if (iResult < 0) {
          ANT_ERROR("failed to write data message to device: %s", strerror(errno));
-      } else if (iResult != ucLen + CHIP-B_HCI_HEADER_SIZE) {
+      } else if (iResult != ucLen + CHIP_B_HCI_HEADER_SIZE) {
          ANT_ERROR("bytes written and message size dont match up");
       } else {
-         stTimeout.tv_sec = time(0) + CHIP-B_FLOW_GO_WAIT_TIMEOUT_SEC;
+         stTimeout.tv_sec = time(0) + CHIP_B_FLOW_GO_WAIT_TIMEOUT_SEC;
          stTimeout.tv_nsec = 0;
 
          while (stRxThreadInfo.astChannels[COMMAND_CHANNEL].ucFlowControlResp != FLOW_GO) {
@@ -163,10 +163,10 @@ wait_error:
       ANT_DEBUG_V("released stFlowControlLock in %s", __FUNCTION__);
       break;
    default:
-      iResult = write(stRxThreadInfo.astChannels[COMMAND_CHANNEL].iFd, txBuffer, ucLen + CHIP-B_HCI_HEADER_SIZE);
+      iResult = write(stRxThreadInfo.astChannels[COMMAND_CHANNEL].iFd, txBuffer, ucLen + CHIP_B_HCI_HEADER_SIZE);
       if (iResult < 0) {
          ANT_ERROR("failed to write message to device: %s", strerror(errno));
-      }  else if (iResult != ucLen + CHIP-B_HCI_HEADER_SIZE) {
+      }  else if (iResult != ucLen + CHIP_B_HCI_HEADER_SIZE) {
          ANT_ERROR("bytes written and message size dont match up");
       } else {
          uiRet = ANT_STATUS_SUCCESS;
@@ -196,7 +196,7 @@ ANTStatus ant_radio_hard_reset(void)
       g_fnStateCallback(RADIO_STATUS_RESETTING);
 
    for (eChannel = 0; eChannel < NUM_ANT_CHANNELS; eChannel++)
-      ioctl(stRxThreadInfo.astChannels[eChannel].iFd, CHIP-B_CHAR_DEV_IOCTL_RESET); //TODO only one?
+      ioctl(stRxThreadInfo.astChannels[eChannel].iFd, CHIP_B_CHAR_DEV_IOCTL_RESET); //TODO only one?
 
    ant_do_disable();
 
@@ -418,7 +418,7 @@ out:
 
 const char *ant_get_lib_version()
 {
-   return "libantradio.so: CHIP-B Character Device Transport. Version "
+   return "libantradio.so: CHIP_B Character Device Transport. Version "
       LIBANT_STACK_MAJOR"."LIBANT_STACK_MINOR"."LIBANT_STACK_INCRE;
 }
 

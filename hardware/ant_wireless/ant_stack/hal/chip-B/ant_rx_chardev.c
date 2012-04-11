@@ -69,7 +69,7 @@ int readChannelMsg(ant_channel_info_t *pstChnlInfo)
       }
    } else {
       ANT_SERIAL(aucRxBuffer, iRxLenRead, 'R');
-      if (aucRxBuffer[CHIP-B_HCI_DATA_OFFSET + ANT_MSG_ID_OFFSET] == ANT_MESG_FLOW_CONTROL) {
+      if (aucRxBuffer[CHIP_B_HCI_DATA_OFFSET + ANT_MSG_ID_OFFSET] == ANT_MESG_FLOW_CONTROL) {
          ANT_DEBUG_V("getting stFlowControlLock in %s", __FUNCTION__);
          iMutexResult = pthread_mutex_lock(pstChnlInfo->pstFlowControlLock);
          if (iMutexResult) {
@@ -78,7 +78,7 @@ int readChannelMsg(ant_channel_info_t *pstChnlInfo)
          }
          ANT_DEBUG_V("got stFlowControlLock in %s", __FUNCTION__);
 
-         pstChnlInfo->ucFlowControlResp = aucRxBuffer[CHIP-B_HCI_DATA_OFFSET + ANT_MSG_DATA_OFFSET];
+         pstChnlInfo->ucFlowControlResp = aucRxBuffer[CHIP_B_HCI_DATA_OFFSET + ANT_MSG_DATA_OFFSET];
 
          ANT_DEBUG_V("releasing stFlowControlLock in %s", __FUNCTION__);
          pthread_mutex_unlock(pstChnlInfo->pstFlowControlLock);
@@ -86,7 +86,7 @@ int readChannelMsg(ant_channel_info_t *pstChnlInfo)
          pthread_cond_signal(pstChnlInfo->pstFlowControlCond);
       } else {
          if (pstChnlInfo->fnRxCallback != NULL) {
-            pstChnlInfo->fnRxCallback(aucRxBuffer[CHIP-B_HCI_SIZE_OFFSET], &aucRxBuffer[CHIP-B_HCI_DATA_OFFSET]);
+            pstChnlInfo->fnRxCallback(aucRxBuffer[CHIP_B_HCI_SIZE_OFFSET], &aucRxBuffer[CHIP_B_HCI_DATA_OFFSET]);
          } else {
             ANT_WARN("%s rx callback is null", pstChnlInfo->pcDevicePath);
          }
