@@ -17,7 +17,7 @@ different package.
 COMPONENTS
 
 This repository contains:
-- antradio_stack v0.7
+- antradio_stack v0.8
 - AntHalService v1.3.2
 - ANTRadioService v2.8 [prebuilt]
 - ant_app v1.1.1
@@ -40,12 +40,14 @@ CONFIGURATION
       BOARD_ANT_WIRELESS_DEVICE := "<chip>"
       where "<chip>" is one of the following:
          "chip-B"
+         "chip-C"
          "wl12xx"
 
    b) If required, define where the ANT power functions are:
       BOARD_ANT_WIRELESS_POWER := "<power>"
       where "<power>" is:
          not required for "chip-B"
+         not required for "chip-C"
          "bluedroid" for "wl12xx"
 
    Add to device.mk:
