@@ -1,0 +1,8 @@
+CVS
+gen
+bin
+doc
+libs
+assets
+.settings
+secure.properties

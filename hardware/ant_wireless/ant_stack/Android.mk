@@ -30,6 +30,10 @@ else ifeq ($(BOARD_ANT_WIRELESS_DEVICE),"chip-B")
 
 include $(LOCAL_PATH)/hal/chip-B/Android.mk
 
+else ifeq ($(BOARD_ANT_WIRELESS_DEVICE),"chip-C")
+
+include $(LOCAL_PATH)/hal/chip-C/Android.mk
+
 else
 
 $(error Unsupported BOARD_ANT_WIRELESS_DEVICE := $(BOARD_ANT_WIRELESS_DEVICE))

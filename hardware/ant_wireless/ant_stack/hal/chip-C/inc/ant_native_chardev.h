@@ -28,17 +28,17 @@
 #ifndef __ANT_NATIVE_CHARDEV_H
 #define __ANT_NATIVE_CHARDEV_H
 
-#define ANT_COMMANDS_DEVICE_NAME             "/dev/antradio_cmd"
-#define ANT_DATA_DEVICE_NAME                 "/dev/antradio_data"
+#define ANT_COMMANDS_DEVICE_NAME             "/dev/smd5"
+#define ANT_DATA_DEVICE_NAME                 "/dev/smd6"
 
-#define CHIP_B_HCI_SIZE_OFFSET               0
-#define CHIP_B_HCI_DATA_OFFSET               1
-#define CHIP_B_HCI_HEADER_SIZE               1
+#define CHIP_C_HCI_SIZE_OFFSET               0
+#define CHIP_C_HCI_DATA_OFFSET               1
+#define CHIP_C_HCI_HEADER_SIZE               1
 
 #define ANT_MESG_FLOW_CONTROL                ((ANT_U8)0xC9)
 #define FLOW_GO                              ((ANT_U8)0x00)
 #define FLOW_STOP                            ((ANT_U8)0x80)
-#define CHIP_B_FLOW_GO_WAIT_TIMEOUT_SEC      10
+#define CHIP_C_FLOW_GO_WAIT_TIMEOUT_SEC      10
 
 int ant_do_enable(void);
 void ant_do_disable(void);
