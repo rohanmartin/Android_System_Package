@@ -19,8 +19,13 @@ COMPONENTS
 This repository contains:
 - antradio_stack v0.8
 - AntHalService v1.3.2
-- ANTRadioService v2.8 [prebuilt]
 - ant_app v1.1.1
+
+ANTRadioService [prebuilt] must be added manually.  It is available in
+the following GitHub repository:
+ ant-wireless/ANTRadioService
+and should be copied in to:
+ packages/apps/ANTRadioService/
 
 ONLY if using a power type of "bluedroid", the following components are also
 essential (see CONFIGURATION 3.b):
