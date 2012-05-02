@@ -17,7 +17,7 @@
  */
 /******************************************************************************\
 *
-*   FILE NAME:      ANT_HCIRxThread.h
+*   FILE NAME:      ant_rx.h
 *
 *   BRIEF:
 *		This file defines the receive thread function
