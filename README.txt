@@ -17,6 +17,7 @@ different package.
 COMPONENTS
 
 This repository contains:
+- antradio_library v1.3.1
 - antradio_stack v0.8
 - AntHalService v1.3.2
 - ant_app v1.1.1
@@ -74,6 +75,8 @@ CONFIGURATION
 
 BUILD OUTPUT
 
+/system/framework/com.dsi.ant.antradio_library.jar
+/system/etc/permissions/com.dsi.ant.antradio_library.xml
 /system/lib/libantradio.so
 /system/app/AntHalService.apk
 /system/app/ANTRadioService.apk
