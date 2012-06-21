@@ -23,7 +23,7 @@ include $(CLEAR_VARS)
 #
 
 LOCAL_C_INCLUDES:= \
-	hardware/ant_wireless/ant_stack/hal/common/inc
+	external/ant_wireless/ant_stack/hal/common/inc
 
 LOCAL_CFLAGS:= -g -c -W -Wall -O2
 
