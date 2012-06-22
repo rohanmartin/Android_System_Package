@@ -58,9 +58,9 @@ CONFIGURATION
 
    Add to device.mk:
    a) ANT PRODUCT_PACKAGE definition:
-      $(call inherit-product, hardware/ant_wireless/ant-wireless.mk)
+      $(call inherit-product, external/ant_wireless/ant-wireless.mk)
 
-2. Place "hardware/ant_wireless/ant-wireless.mk" in the Android platform
+2. Place "external/ant_wireless/ant-wireless.mk" in the Android platform
    source.
 
 3. Place the source/.apk's for each component in the Android platform source.
